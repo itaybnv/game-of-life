@@ -76,6 +76,8 @@ function draw() {
 }
 
 countInArray = (array, value) => {
+  // Count how many times value appears in array
+
 	return array.reduce((n, x) => n + (x === value), 0);
 };
 
@@ -102,7 +104,15 @@ initNext = () => {
 	}
 };
 
-copyNextToCurrent = () => {};
+copyNextToCurrent = () => {
+	// Copy every value from next to current
+
+	for (let i = 0; i < cols; i++) {
+		for (let j = 0; j < rows; j++) {
+			current[i][j] = next[i][j];
+		}
+	}
+};
 
 drawGame = () => {
 	for (let i = 0; i < cols; i++) {
