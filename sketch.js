@@ -38,9 +38,29 @@ function setup() {
 
 function draw() {
 	background(51);
-
 	drawGame();
+
+	// Apply rules for each cell
+
+	for (let i = 0; i < rows; i++) {
+		for (let j = 0; j < cols; j++) {
+			neighbours = getNeighbours(current[i][j]);
+
+			// Cell is alive, check rules 1, 2 and 3
+			if (current[i][j] === 1) {
+        
+      }
+      
+			// Cell is dead, check rule 4
+			else {
+			}
+		}
+	}
+
+	copyNextToCurrent();
 }
+
+getNeighbours = cell => {};
 
 initCurrent = () => {
 	// Initializes the current 2D array with random values (0 or 1)
@@ -62,6 +82,8 @@ initNext = () => {
 		next[i] = new Array(cols).fill(0);
 	}
 };
+
+copyNextToCurrent = () => {};
 
 drawGame = () => {
 	for (let i = 0; i < cols; i++) {
