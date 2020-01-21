@@ -19,8 +19,8 @@
 
 let width = 800;
 let height = 800;
-let rows = 120;
-let cols = 120;
+let rows = 90;
+let cols = 90;
 
 let current;
 let next;
