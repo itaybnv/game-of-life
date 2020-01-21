@@ -10,7 +10,7 @@
     * Any live cell with more than three live neighbours dies, as if by overpopulation.
 
     * Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-    
+
 */
 
 ////////////////////////
@@ -39,19 +39,7 @@ function setup() {
 function draw() {
 	background(51);
 
-	for (let i = 0; i < cols; i++) {
-		for (let j = 0; j < rows; j++) {
-			if (current[i][j] === 1) {
-				fill(0);
-			} else fill(255);
-			rect(
-				(j * width) / cols, // X value
-				(i * height) / rows, // Y value
-				width / cols, // Width
-				height / rows // Height
-			);
-		}
-	}
+	drawGame();
 }
 
 initCurrent = () => {
@@ -72,5 +60,21 @@ initNext = () => {
 	next = new Array(rows);
 	for (let i = 0; i < rows; i++) {
 		next[i] = new Array(cols).fill(0);
+	}
+};
+
+drawGame = () => {
+	for (let i = 0; i < cols; i++) {
+		for (let j = 0; j < rows; j++) {
+			if (current[i][j] === 1) {
+				fill(0);
+			} else fill(255);
+			rect(
+				(j * width) / cols, // X value
+				(i * height) / rows, // Y value
+				width / cols, // Width
+				height / rows // Height
+			);
+		}
 	}
 };
