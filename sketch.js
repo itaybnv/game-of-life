@@ -19,8 +19,8 @@
 
 let width = 800;
 let height = 800;
-let rows = 20;
-let cols = 20;
+let rows = 120;
+let cols = 120;
 
 let current;
 let next;
@@ -31,20 +31,18 @@ let next;
 
 function setup() {
 	createCanvas(width, height);
-
 	initCurrent();
 	initNext();
 }
 
 function draw() {
-	background(51);
 	drawGame();
 
 	// Apply rules for each cell
 
 	for (let i = 0; i < rows; i++) {
 		for (let j = 0; j < cols; j++) {
-			let aliveNeighboursCount = countInArray(getNeighbours(current[i][j]), 1);
+			let aliveNeighboursCount = countInArray(getNeighbours(i, j), 1);
 
 			// Cell is alive, check rules 1, 2 and 3
 			if (current[i][j] === 1) {
@@ -76,12 +74,26 @@ function draw() {
 }
 
 countInArray = (array, value) => {
-  // Count how many times value appears in array
+	// Count how many times value appears in array
 
 	return array.reduce((n, x) => n + (x === value), 0);
 };
 
-getNeighbours = cell => {};
+getNeighbours = (_i, _j) => {
+	let neighbours = [];
+	for (let i = _i - 1; i <= _i + 1; i++) {
+		for (let j = _j - 1; j <= _j + 1; j++) {
+			try {
+				if (i === _i && j === _j) {
+					continue;
+				}
+
+				neighbours.push(current[i][j]);
+			} catch (error) {}
+		}
+	}
+	return neighbours;
+};
 
 initCurrent = () => {
 	// Initializes the current 2D array with random values (0 or 1)
