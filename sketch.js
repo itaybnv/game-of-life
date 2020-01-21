@@ -44,21 +44,40 @@ function draw() {
 
 	for (let i = 0; i < rows; i++) {
 		for (let j = 0; j < cols; j++) {
-			neighbours = getNeighbours(current[i][j]);
+			let aliveNeighboursCount = countInArray(getNeighbours(current[i][j]), 1);
 
 			// Cell is alive, check rules 1, 2 and 3
 			if (current[i][j] === 1) {
-        
-      }
-      
+				// Rule one - Death by underpopulation
+				if (aliveNeighboursCount < 2) {
+					next[i][j] = 0;
+				}
+				// Rule three - Death by overpopulation
+				else if (aliveNeighboursCount > 3) {
+					next[i][j] = 0;
+				}
+				// Rule two - stays alive
+				else {
+					next[i][j] = 1;
+				}
+			}
+
 			// Cell is dead, check rule 4
 			else {
+				// Rule four - life by reproduction
+				if (aliveNeighboursCount === 3) {
+					next[i][j] = 1;
+				}
 			}
 		}
 	}
 
 	copyNextToCurrent();
 }
+
+countInArray = (array, value) => {
+	return array.reduce((n, x) => n + (x === value), 0);
+};
 
 getNeighbours = cell => {};
 
